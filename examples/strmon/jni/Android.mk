@@ -19,8 +19,9 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := libstrmon
 LOCAL_SRC_FILES := mon.c.arm
 LOCAL_C_INCLUDES := ../../../../adbi/instruments/base/ ../../../dalvikhook/jni/
-LOCAL_LDLIBS    := -L../../../dalvikhook/jni/libs -ldl -ldvm 
+LOCAL_LDLIBS    := -L../../../dalvikhook/jni/libs -ldl -ldvm
 LOCAL_LDLIBS    := -Wl,--start-group ../../../../adbi/instruments/base/obj/local/armeabi/libbase.a ../../../dalvikhook/obj/local/armeabi/libdalvikhook.a -Wl,--end-group
+LOCAL_LDLIBS +=  -llog -lz
 LOCAL_CFLAGS    := -g
 
 include $(BUILD_SHARED_LIBRARY)
