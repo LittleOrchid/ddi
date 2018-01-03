@@ -63,6 +63,7 @@ void* dalvik_hook(struct dexstuff_t *dex, struct dalvik_hook_t *h)
 
 	h->method = dex->dvmFindVirtualMethodHierByDescriptor_fnPtr(target_cls, h->method_name, h->method_sig);
 	if (h->method == 0) {
+		log("h->method = 0: using findVirtualMethod");
 		h->method = dex->dvmFindDirectMethodByDescriptor_fnPtr(target_cls, h->method_name, h->method_sig);
 	}
 
@@ -84,6 +85,7 @@ void* dalvik_hook(struct dexstuff_t *dex, struct dalvik_hook_t *h)
 			log("insSize = 0x%x  registersSize = 0x%x  outsSize = 0x%x\n", h->method->insSize, h->method->registersSize, h->method->outsSize)
 		}
 
+		log("h->n_iss:%x, h->n_rss:%x, h->n_oss:%x, h->nss:%x\n", h->n_iss, h->n_rss, h->n_oss);
 		h->iss = h->method->insSize;
 		h->rss = h->method->registersSize;
 		h->oss = h->method->outsSize;
